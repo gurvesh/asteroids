@@ -45,12 +45,14 @@ def main():
             thing.update(dt)
 
         for asteroid in asteroid_group:
+            for shot in shots:
+                if asteroid.check_collision(shot):
+                    asteroid.split()
+                    shot.kill()
             if asteroid.check_collision(player):
                 print("Game over!")
                 sys.exit(0)
                 
-        # player.draw(screen)
-        # Using the drawable group container:
         for thing in drawable:
             thing.draw(screen)
 
